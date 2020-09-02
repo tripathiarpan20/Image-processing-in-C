@@ -1,0 +1,8 @@
+#include <stdlib.h>
+#include <stdin.h>
+
+typedef struct matrix_t{
+  int m;
+  int n;
+  float **A;
+};
