@@ -1,6 +1,20 @@
 #include <stdlib.h>
 #include <stdin.h>
 
+typedef struct Pixel{
+  int R;
+  int G;
+  int B;
+}pixel;
+
+typedef struct ppm{
+  int m;
+  int n;
+  int mag_num;
+  //magic number, i.e, max possile value of any R,G,B from anypixel
+  pixel **img;
+}jpeg;
+
 typedef struct matrix_t{
   int m;
   int n;
@@ -11,26 +25,20 @@ typedef struct matrix_t{
 **A = (float **)malloc(m * sizeof(int *)); 
     for (i=0; i<m; i++) 
          arr[i] = (int *)malloc(n * sizeof(int));  
-
 */
 
-/* using: https://github.com/libjpeg-turbo/libjpeg-turbo/blob/master/wrppm.c
-   for reading jpeg into ppm format*/
 
 
+/*Our transforms would take 'ppm' structure as input and give either 'ppm'
+structure or 'matrix' structure as output (ppm for ops like blurring,
+matrix for ops like grayscale conversion).*/
 
-//This is the ppm imagethat would be used by the transforms 
-//Once jpeg has been read, it won't be overwritten by the program
+/*
 
-matrix jpeg_to_ppm_input;
-
-//This would be used after applying all the desired transforms on the ppm image
-matrix final_output;
 
 
 char** listof_transforms; //for the 'prepare' command, in order to allow the user to type in the transforms to be applied
 
-/*
 if multiple transforms are chosen, we have to apply them one after another, i.e, A--> B --> C, where
 B is obtained by applying transform_1 on A and C is obtained by applying transform_2 on B.
 In the main modules, we would have to loop through all the transforms in order to get the desired image,
@@ -50,9 +58,5 @@ for transform in transforms_list:
 
 
 
-//These would be used by the transforms modules in order to change the input images
-//We declare these as pointers because it is possible to just 'point' to the 'jpeg_to_ppm_input'
-// matrix and 'final_output' matrix;
-
-matrix* mathlib_input;
-matrix* mathlib_output;
+//The functions in 'mathlib.c' would take pointers to matrices as input and
+//work on them.
