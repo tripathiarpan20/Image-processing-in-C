@@ -16,7 +16,7 @@ int multiply (matrix P, matrix A, matrix B){
     P->n = B->n;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
     for (int i=0; i< P->m; i++) {
-         P->A[i] = (int *)malloc(P->n * sizeof(float));
+         P->A[i] = (float *)malloc(P->n * sizeof(float));
     }
   }
  
@@ -45,7 +45,7 @@ int dot (matrix P, matrix A, matrix B){
     P->n = 1;
     P->A = (float **)malloc(m * sizeof(float *)); 
     for (int i=0; i<m; i++) {
-         P->A[i] = (int *)malloc(n * sizeof(float));
+         P->A[i] = (float *)malloc(n * sizeof(float));
     }
   }
   
@@ -72,7 +72,7 @@ int elementwise_mul (matrix P, matrix A, matrix B){
     P->n = B->n;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
     for (int i=0; i< P->m; i++) {
-         P->A[i] = (int *)malloc(P->n * sizeof(float));
+         P->A[i] = (float *)malloc(P->n * sizeof(float));
     }
   }
 
@@ -91,7 +91,7 @@ int transpose (matrix P, matrix A) {
     P->n = A->m;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
     for (int i=0; i< P->m; i++) {
-    	P->A[i] = (int *)malloc(P->n * sizeof(float));
+    	P->A[i] = (float *)malloc(P->n * sizeof(float));
     }
   }
   
@@ -116,7 +116,7 @@ int covariance_mat (matrix P, matrix A){
   P->n = B->n;
   P->A = (float **)malloc(P->m * sizeof(float *)); 
   for (int i=0; i< P->m; i++) {
-       P->A[i] = (int *)malloc(P->n * sizeof(float));
+       P->A[i] = (float *)malloc(P->n * sizeof(float));
   }
   multiply(P, A, B);
   return 0;
