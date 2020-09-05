@@ -4,7 +4,7 @@
 //We'll define '-I' parameter of gcc command as the 'include' folder
 
 
-int multiply (matrix* P, matrix* A, matrix* B){
+int multiply (matrix P, matrix A, matrix B){
   if (A->n != B->m) {
     printf("Dimensions of input matrices don't match:\n");
     printf("Dimensions of A = (%d,%d)\nDimension of B = (%d,%d)",A->m,A->n,B->m,B->n);
@@ -41,7 +41,7 @@ int multiply (matrix* P, matrix* A, matrix* B){
   return 0;
 }
 
-int dot (matrix *P, matrix *A, matrix *B){
+int dot (matrix P, matrix A, matrix B){
   if (A->m != B->m || A->n != B->n) {
     printf("Dimensions of input matrices don't match:\n");
     printf("Dimensions of A = (%d,%d)\nDimension of B = (%d,%d)",A->m,A->n,B->m,B->n);
@@ -49,7 +49,7 @@ int dot (matrix *P, matrix *A, matrix *B){
   }
 
   else if (P == NULL || P->A == NULL) {
-    P = (matrix*) malloc(sizeof(matrix));
+    //P = (matrix) malloc(sizeof(struct matrix_t));
     P->m = 1;
     P->n = 1;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
@@ -68,7 +68,7 @@ int dot (matrix *P, matrix *A, matrix *B){
   return 0;
 }
 
-int elementwise_mul (matrix *P, matrix *A, matrix *B){
+int elementwise_mul (matrix P, matrix A, matrix B){
   if (A->m != B->m || A->n != B->n) {
     printf("Dimensions of input matrices don't match:\n");
     printf("Dimensions of A = (%d,%d)\nDimension of B = (%d,%d)",A->m,A->n,B->m,B->n);
@@ -93,7 +93,7 @@ int elementwise_mul (matrix *P, matrix *A, matrix *B){
   return 0;
 }
 
-int transpose (matrix *P, matrix *A) {
+int transpose (matrix P, matrix A) {
   if (P == NULL || P->A == NULL) {
     //P = (matrix*) malloc(sizeof(matrix));
     P->m = A->n;
@@ -112,13 +112,13 @@ int transpose (matrix *P, matrix *A) {
   return 0;
 }
 
-int covariance_mat (matrix *P, matrix *A){
+int covariance_mat (matrix P, matrix A){
   if (A->m != 1) {
     printf("The input matrix must be of dimension 1 x n\n");
     printf("Dimensions of input matrix = (%d,%d)",A->m,A->n);
     return -1;
   }
-  matrix *B = (matrix *) malloc(sizeof(matrix));
+  matrix B = (matrix) malloc(sizeof(struct matrix_t));
   transpose(B, A);
   
   P->m = A->m;
@@ -130,3 +130,4 @@ int covariance_mat (matrix *P, matrix *A){
   multiply(P, A, B);
   return 0;
 }
+
