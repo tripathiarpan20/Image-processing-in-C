@@ -1,19 +1,6 @@
 #include <stdlib.h>
 #include <stdin.h>
 
-typedef struct Pixel{
-  int R;
-  int G;
-  int B;
-}pixel;
-
-typedef struct ppm{
-  int m;
-  int n;
-  int mag_num;
-  //magic number, i.e, max possile value of any R,G,B from anypixel
-  pixel **img;
-}jpeg;
 
 struct matrix_t {
   int m;
