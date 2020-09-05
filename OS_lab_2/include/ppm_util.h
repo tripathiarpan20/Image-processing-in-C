@@ -10,4 +10,4 @@ typedef struct ppm{
   int m;
   int n;
   pixel **img;
-}jpeg;
+}ppm;
