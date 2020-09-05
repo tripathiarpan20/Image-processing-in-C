@@ -6,9 +6,8 @@ ppm blur (ppm A){
     ret->n = A->n;
     ret->A = (pixel **)malloc(ret->m * sizeof(pixel *)); 
     for (int i=0; i< ret->m; i++) {
-      ret->A[i] = (pixel *)malloc(P->n * sizeof(pixel));
+      ret->A[i] = (pixel *)malloc(ret->n * sizeof(pixel));
     }
-
     for (int i=0; i < ret->m - 1; i++) {
       for(int j=0; j<ret->n - 1; j++) {
         int avg_R=0;
