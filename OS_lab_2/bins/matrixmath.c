@@ -4,6 +4,7 @@
 //We'll define '-I' parameter of gcc command as the 'include' folder
 
 
+
 int multiply (matrix P, matrix A, matrix B){
   if (A->n != B->m) {
     printf("Dimensions of input matrices don't match:\n");
@@ -12,8 +13,6 @@ int multiply (matrix P, matrix A, matrix B){
   }
 
   else if (P == NULL || P->A == NULL) {
-    printf("Null branch !!\n");
-    
     //matrix** backup = &P;
     //P = (matrix*) malloc(sizeof(matrix));
     //*backup = P;
@@ -23,7 +22,7 @@ int multiply (matrix P, matrix A, matrix B){
     P->A = (float **)malloc(P->m * sizeof(float *)); 
     for (int i=0; i< P->m; i++) {
          P->A[i] = (float *)malloc(P->n * sizeof(float));
-    }\
+    }
     printf("%d\n",P->m);
     printf("%d\n",P->n);
   }
@@ -48,18 +47,13 @@ int dot (matrix P, matrix A, matrix B){
     return -1;
   }
 
-  else if (P == NULL || P->A == NULL) {
-    //P = (matrix) malloc(sizeof(struct matrix_t));
-    P->m = 1;
-    P->n = 1;
-    P->A = (float **)malloc(P->m * sizeof(float *)); 
-    for (int i=0; i<P->m; i++) {
-         P->A[i] = (float *)malloc(P->n * sizeof(float));
-    }
-  }
-  
   P->m = 1;
   P->n = 1;
+  P->A = (float **)malloc(P->m * sizeof(float *)); 
+  for (int i=0; i<P->m; i++) {
+      P->A[i] = (float *)malloc(P->n * sizeof(float));
+  }
+
   for (int c = 0 ; c < A->m ; c++ ){
      for (int d = 0 ; d < A->n ; d++ ){
        P->A[0][0] += A->A[c][d] * B->A[c][d];
@@ -130,4 +124,3 @@ int covariance_mat (matrix P, matrix A){
   multiply(P, A, B);
   return 0;
 }
-
