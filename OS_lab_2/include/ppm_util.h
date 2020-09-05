@@ -1,4 +1,5 @@
 #include "main.h"
+#define MAX_RGB_VALUE 255
 
 typedef struct Pixel{
   int R;
