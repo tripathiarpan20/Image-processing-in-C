@@ -15,11 +15,12 @@ typedef struct ppm{
   pixel **img;
 }jpeg;
 
-typedef struct matrix_t{
+struct matrix_t {
   int m;
   int n;
   float **A;
-}matrix;
+};
+typedef struct matrix_t * matrix;
 
 /*
 **A = (float **)malloc(m * sizeof(int *)); 
