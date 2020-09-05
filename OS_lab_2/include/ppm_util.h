@@ -13,5 +13,5 @@ typedef struct ppm{
   pixel **A;
 }ppm;
 
-void writePPM (ppm img, char* name);
-ppm readPPM (char* name);
+void writePPM (ppm *img, char* name);
+ppm* readPPM (char* name);
