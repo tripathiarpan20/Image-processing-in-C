@@ -9,7 +9,7 @@ typedef struct Pixel{
 typedef struct ppm{
   int m;
   int n;
-  pixel **img;
+  pixel **A;
 }ppm;
 
 void writePPM (ppm img, char name[]);
