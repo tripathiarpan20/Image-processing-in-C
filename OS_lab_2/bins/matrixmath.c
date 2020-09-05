@@ -3,7 +3,8 @@
 #include "matrixmath.h"
 //We'll define '-I' parameter of gcc command as the 'include' folder
 
-int multiply (matrix P, matrix A, matrix B){
+
+int multiply (matrix* P, matrix* A, matrix* B){
   if (A->n != B->m) {
     printf("Dimensions of input matrices don't match:\n");
     printf("Dimensions of A = (%d,%d)\nDimension of B = (%d,%d)",A->m,A->n,B->m,B->n);
@@ -11,15 +12,23 @@ int multiply (matrix P, matrix A, matrix B){
   }
 
   else if (P == NULL || P->A == NULL) {
-    P = (matrix*) malloc(sizeof(matrix));
+    printf("Null branch !!\n");
+    
+    //matrix** backup = &P;
+    //P = (matrix*) malloc(sizeof(matrix));
+    //*backup = P;
+    
     P->m = A->m;
     P->n = B->n;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
     for (int i=0; i< P->m; i++) {
          P->A[i] = (float *)malloc(P->n * sizeof(float));
-    }
+    }\
+    printf("%d\n",P->m);
+    printf("%d\n",P->n);
   }
- 
+  
+  int sum;
   for (int c = 0 ; c < A->m ; c++ ){
      for (int d = 0 ; d < B->n ; d++ ){
        for (int k = 0 ; k < A->n ; k++ ){
@@ -32,7 +41,7 @@ int multiply (matrix P, matrix A, matrix B){
   return 0;
 }
 
-int dot (matrix P, matrix A, matrix B){
+int dot (matrix *P, matrix *A, matrix *B){
   if (A->m != B->m || A->n != B->n) {
     printf("Dimensions of input matrices don't match:\n");
     printf("Dimensions of A = (%d,%d)\nDimension of B = (%d,%d)",A->m,A->n,B->m,B->n);
@@ -43,9 +52,9 @@ int dot (matrix P, matrix A, matrix B){
     P = (matrix*) malloc(sizeof(matrix));
     P->m = 1;
     P->n = 1;
-    P->A = (float **)malloc(m * sizeof(float *)); 
-    for (int i=0; i<m; i++) {
-         P->A[i] = (float *)malloc(n * sizeof(float));
+    P->A = (float **)malloc(P->m * sizeof(float *)); 
+    for (int i=0; i<P->m; i++) {
+         P->A[i] = (float *)malloc(P->n * sizeof(float));
     }
   }
   
@@ -59,7 +68,7 @@ int dot (matrix P, matrix A, matrix B){
   return 0;
 }
 
-int elementwise_mul (matrix P, matrix A, matrix B){
+int elementwise_mul (matrix *P, matrix *A, matrix *B){
   if (A->m != B->m || A->n != B->n) {
     printf("Dimensions of input matrices don't match:\n");
     printf("Dimensions of A = (%d,%d)\nDimension of B = (%d,%d)",A->m,A->n,B->m,B->n);
@@ -67,7 +76,7 @@ int elementwise_mul (matrix P, matrix A, matrix B){
   }
 
   else if (P == NULL || P->A == NULL) {
-    P = (matrix*) malloc(sizeof(matrix));
+    //P = (matrix*) malloc(sizeof(matrix));
     P->m = A->m;
     P->n = B->n;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
@@ -84,9 +93,9 @@ int elementwise_mul (matrix P, matrix A, matrix B){
   return 0;
 }
 
-int transpose (matrix P, matrix A) {
+int transpose (matrix *P, matrix *A) {
   if (P == NULL || P->A == NULL) {
-    P = (matrix*) malloc(sizeof(matrix));
+    //P = (matrix*) malloc(sizeof(matrix));
     P->m = A->n;
     P->n = A->m;
     P->A = (float **)malloc(P->m * sizeof(float *)); 
@@ -103,13 +112,13 @@ int transpose (matrix P, matrix A) {
   return 0;
 }
 
-int covariance_mat (matrix P, matrix A){
+int covariance_mat (matrix *P, matrix *A){
   if (A->m != 1) {
     printf("The input matrix must be of dimension 1 x n\n");
     printf("Dimensions of input matrix = (%d,%d)",A->m,A->n);
     return -1;
   }
-  matrix *B;
+  matrix *B = (matrix *) malloc(sizeof(matrix));
   transpose(B, A);
   
   P->m = A->m;
@@ -121,4 +130,3 @@ int covariance_mat (matrix P, matrix A){
   multiply(P, A, B);
   return 0;
 }
-
