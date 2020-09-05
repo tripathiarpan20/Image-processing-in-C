@@ -1,6 +1,13 @@
 #include "ppm_util.h"
 #include <string.h>
 
+
+/* TODO
+implement readPPM
+implement 'main' files
+Makefile
+
+*/
 void writePPM(ppm img, char* name){
     FILE *fp;
 
