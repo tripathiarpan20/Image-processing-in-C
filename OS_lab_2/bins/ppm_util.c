@@ -1,14 +1,15 @@
 #include "ppm_util.h"
-
+#include <string.h>
 
 void writePPM(ppm img, char name[]){
     FILE *fp;
 
     //"output.ppm" for default
-    char* filename = name;
-
+    char* filename = strcat(name,".ppm");
+    char* out_folder = "../outputs/";
+    
     //open a file for output
-    fp = fopen(filename,"wb");
+    fp = fopen(strcat(out_folder, filename),"wb");
     if(!fp){
         printf("Oops! Unable to open the file '%s' \n",filename);
         exit(1);
