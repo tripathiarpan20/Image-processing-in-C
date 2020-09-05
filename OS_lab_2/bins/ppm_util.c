@@ -1,7 +1,7 @@
 #include "ppm_util.h"
 
 
-void writePPM(matrix img, char name[]){
+void writePPM(ppm img, char name[]){
     FILE *fp;
 
     //"output.ppm" for default
