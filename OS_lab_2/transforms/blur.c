@@ -1,6 +1,6 @@
 #include "main.h"
 
-ppm blur (ppm A){
+ppm* blur (ppm* A){
     ppm *ret = (ppm *) malloc(sizeof(ppm));
     ret->m = A->m;
     ret->n = A->n;
