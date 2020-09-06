@@ -19,6 +19,7 @@ ppm* blur (ppm* A){
 	    avg_G += ret->A[i+k][j+l].G;
 	    avg_B += ret->A[i+k][j+l].B;
 	  }
+	}
 	avg_R = avg_R / 4.0;
 	avg_G = avg_G / 4.0;
 	avg_B = avg_B / 4.0;
