@@ -21,7 +21,7 @@ ppm* readPPM (char* name)
 	       exit(1);
          }
   fgets(str,sizeof(str),fp);
-  if(str[0]!='P' || str[1]! = '3') 
+  if((str[0]!='P') || (str[1]!= '3'))
   {
     fprintf(stderr,"invalid format\n, image is not p3");
   	}
@@ -31,16 +31,18 @@ ppm* readPPM (char* name)
  {
   while(getc(fp)!='\n');
   c = getc(fp);
+ }
   ungetc(c,fp);
   fscanf(fp,"%d %d",&img->m,&img->n);
   fscanf(fp,"%d",&max);
+  
   while(fgetc(fp)!='\n');
   img->A = (pixel**)malloc(sizeof(pixel*)*img->m);
   for(int i =0;i< img->m; i++)
   {
-   img->A+i = (pixel*)malloc(sizeof(pixel)*img->n);
+   *(img->A+i) = (pixel*)malloc(sizeof(pixel)*img->n);
   }
-  
+ 
   for(int i =0;i< img->m; i++)
   {
    for(int j =0;j< img->n; j++)
@@ -51,31 +53,7 @@ ppm* readPPM (char* name)
   
   fclose(fp);
   return img;
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -83,18 +61,20 @@ ppm* readPPM (char* name)
 
 void writePPM(ppm *img, char* name){
     FILE *fp;
-
+    printf("hi1\n");
     //"output.ppm" for default
-    char* filename = strcat(name,".ppm");
+    //char* filename = strcat(name,".ppm");
+    printf("hi4\n");
     char* out_folder = "../outputs/";
-    
+    printf("hi2\n");
     //open a file for output
-    fp = fopen(strcat(out_folder, filename),"wb");
+    fp = fopen(name,"wb");
+    printf("hi3\n");
     if(!fp){
-        printf("Oops! Unable to open the file '%s' \n",filename);
+        printf("Oops! Unable to open the file '%s' \n",name);
         exit(1);
     }
-
+    printf("hi\n");
     //write the header of the file
     //image format
     fprintf(fp,"P3\n");
@@ -103,7 +83,7 @@ void writePPM(ppm *img, char* name){
     fprintf(fp,"%d %d\n",img->m,img->n);
 
     //rgb color depth
-    fprintf(fp,"%d\n",MAX_RGB_VALUE);
+    fprintf(fp,"%d\n",255);
 
     //printing the pixel values
     for(int i = 0 ; i < img->m ; i++){
@@ -114,8 +94,30 @@ void writePPM(ppm *img, char* name){
     }
 
     //fwrite(img->A,sizeof(pixel),3*img->m * img->n,fp);
-
     //closing the file
     fclose(fp);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
