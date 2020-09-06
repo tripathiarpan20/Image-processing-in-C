@@ -1,4 +1,4 @@
-SRCDIR := bin
+SRCDIR := bins
 INCLDIR := include
 TRANSDIR := transforms
 EXEDIR := exe
