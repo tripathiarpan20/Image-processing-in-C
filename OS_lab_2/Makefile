@@ -8,11 +8,11 @@ LIBDIR := libs
 build: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
 	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/run_main.c $(TRANSDIR)/*.c $(SRCDIR)/matrix_math.c $(SRCDIR)/ppm_util.c -L $(LIBDIR) -lmatrixmath
 
-T1:
+T1: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
 	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T1.c $(TRANSDIR)/*.c $(SRCDIR)/matrix_math.c $(SRCDIR)/ppm_util.c -L $(LIBDIR) -lmatrixmath
 
 
-T2:
+T2: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
 	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T2.c $(TRANSDIR)/*.c $(SRCDIR)/matrix_math.c $(SRCDIR)/ppm_util.c -L $(LIBDIR) -lmatrixmath
 
 $(LIBDIR)/libmatrixmath.a:
