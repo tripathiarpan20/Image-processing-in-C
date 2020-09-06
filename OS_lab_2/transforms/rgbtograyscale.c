@@ -1,3 +1,5 @@
+#include "main.h"
+
 ppm* rgbtograyscale (ppm* A)
 {
    int i,j,k;
@@ -55,9 +57,9 @@ ppm* rgbtograyscale (ppm* A)
     for(j=0;j<A->n;j++)
     {
      
-      P->A[0][0]= A->A[i][j].R;
-      P->A[0][1]= A->A[i][j].G;
-      P->A[0][2]= A->A[i][j].B;
+      P->A[0][0]= A->pxl[i][j].R;
+      P->A[0][1]= A->pxl[i][j].G;
+      P->A[0][2]= A->pxl[i][j].B;
       multiply(R,P,Q);
       ret->pxl[i][j].R = R->A[0][0];
       ret->pxl[i][j].G = R->A[0][1];

@@ -19,13 +19,13 @@ ppm* readPPM (char* name)
   strcpy(name1,name);
   strcat(name1,".ppm");
   char fullname[100];
-  strcpy(fullname,"../inputs/");
+  strcpy(fullname,"inputs/");
   strcat(fullname,name1);
-  
+  printf("Filename for readPPM fopen is: %s\n",fullname);
  
   fp = fopen(fullname,"rb");
   if(!fp){
-	       fprintf(stderr,"Unable to open file\n");
+	       fprintf(stderr,"Unable to open inputted ppm file\n");
 	       exit(1);
          }
   fgets(str,sizeof(str),fp);
@@ -45,10 +45,10 @@ ppm* readPPM (char* name)
   fscanf(fp,"%d",&max);
   
   while(fgetc(fp)!='\n');
-  img->A = (pixel**)malloc(sizeof(pixel*)*img->m);
+  img->pxl = (pixel**)malloc(sizeof(pixel*)*img->m);
   for(int i =0;i< img->m; i++)
   {
-   *(img->A+i) = (pixel*)malloc(sizeof(pixel)*img->n);
+   *(img->pxl +i) = (pixel*)malloc(sizeof(pixel)*img->n);
   }
  
   for(int i =0;i< img->m; i++)
@@ -59,6 +59,7 @@ ppm* readPPM (char* name)
    }
   }
   fclose(fp);
+  printf("readPPM successful\n");
   return img;
 }
 
@@ -71,11 +72,12 @@ void writePPM(ppm *img, char* name){
     strcpy(filename,name);    
     strcat(filename,".ppm");
    
-    char* out_folder = "../outputs/";
+    char* out_folder = "outputs/";
     char fullname[100];
     strcpy(fullname,out_folder);
     strcat(fullname,filename);
     
+     printf("Filename for writePPM fopen is: %s\n",fullname);
     fp = fopen(fullname,"wb");
     
     if(!fp){

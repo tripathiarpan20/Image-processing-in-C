@@ -28,7 +28,7 @@ run: build
 	@echo "output" >> inp.txt
 	@cat inp.txt
 	$(EXEDIR)/main.o
-	rm inp.txt
+	rm 
 
 prepare: build
 	@read inp_file

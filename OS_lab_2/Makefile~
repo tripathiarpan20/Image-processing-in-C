@@ -1,0 +1,15 @@
+build: prepare
+
+
+
+run:
+	@echo "input.ppm" >> inp.txt
+	@echo "output.ppm" >> inp.txt
+
+
+
+prepare:
+	read inp_file
+	read out_file
+	@echo $$inp_file >> inp.txt
+	@echo $$out_file >> inp.txt  
