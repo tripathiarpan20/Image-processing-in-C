@@ -34,7 +34,7 @@ ppm* blur (ppm* A){
       }
     }   
 
-    return *ret;
+    return ret;
 }
 
 
