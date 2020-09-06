@@ -13,7 +13,7 @@ void main() {
 
   
   //TODO: replace the function with 'func_name("../input/input.ppm")
-  ppm* inp = readPPM("input.ppm");
+  ppm* inp = readPPM(input);
 
   //TODO: In the "prepare_main.c", this "transforms" are is supposed to be
   //a double pointer that 
@@ -23,14 +23,14 @@ void main() {
   //the files in transforms folder
 
   //looping through the transforms and applying on the image
-  for (int i=0; i<2; i++) {
+  for (int i=0; i<1; i++) {
     if(strcmpi(transforms[i],"grayscale") == 0) {
-      ppm* output = //grayscale function by pavan
+      ppm* result = //grayscale function by pavan
     }
     else if(strcmpi(transforms[i],"blur")==0) {
-      ppm* output = //blurring function by me
+      ppm* result = //blurring function by me
     }
-    input = output;
+    input = result;
   }
   //The transform functions would have exceptions that occur for wrong inputs
   
