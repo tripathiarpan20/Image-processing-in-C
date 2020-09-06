@@ -17,7 +17,7 @@ void main() {
 
   //TODO: In the "prepare_main.c", this "transforms" are is supposed to be
   //a double pointer that 
-  char* transforms[] = ["grayscale" , "blur"];
+  char* transforms[] = ["grayscale"];
 
   //TODO: implement a 'list transforms' command in make file that shows all
   //the files in transforms folder
