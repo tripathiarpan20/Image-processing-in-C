@@ -2,8 +2,8 @@
 
 ppm* blur (ppm* A){
     ppm *ret = (ppm *) malloc(sizeof(ppm));
-    ret->m = A->m;
-    ret->n = A->n;
+    ret->m = A->m - 1;
+    ret->n = A->n - 1;
     ret->pxl = (pixel **)malloc(ret->m * sizeof(pixel *)); 
     for (int i=0; i< ret->m; i++) {
       ret-pxl[i] = (pixel *)malloc(ret->n * sizeof(pixel));
@@ -13,6 +13,7 @@ ppm* blur (ppm* A){
         float avg_R=0;
 	float avg_G=0;
 	float avg_B=0;
+	      
 	for (int k=0; k < 2; k++) {
           for (int l=0; l < 2; l++) {
             avg_R += ret->pxl[i+k][j+l].R;
@@ -24,13 +25,16 @@ ppm* blur (ppm* A){
 	avg_G = avg_G / 4.0;
 	avg_B = avg_B / 4.0;
 	
-        for (int k=0; k < 2; k++) {
+	ret->pxl[i][j].R = avg_R;
+	ret->pxl[i][j].G = avg_G;
+	ret->pxl[i][j].B = abg_B;
+        /*for (int k=0; k < 2; k++) {
           for (int l=0; l < 2; l++) {
             ret->pxl[i+k][j+l].R = avg_R;
 	    ret->pxl[i+k][j+l].G = avg_G;
 	    ret->pxl[i+k][j+l].B = avg_B;
 	  }
-	}
+	}*/
       }
     }   
 
