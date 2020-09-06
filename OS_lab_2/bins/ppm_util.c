@@ -1,4 +1,4 @@
-#include "ppm_util.h"
+#include "main.h"
 #include <string.h>
 
 
@@ -37,17 +37,17 @@ ppm* readPPM (char* name)
   fscanf(fp,"%d",&max);
   
   while(fgetc(fp)!='\n');
-  img->A = (pixel**)malloc(sizeof(pixel*)*img->m);
+  img->pxl = (pixel**)malloc(sizeof(pixel*)*img->m);
   for(int i =0;i< img->m; i++)
   {
-   *(img->A+i) = (pixel*)malloc(sizeof(pixel)*img->n);
+   *(img->pxl+i) = (pixel*)malloc(sizeof(pixel)*img->n);
   }
  
   for(int i =0;i< img->m; i++)
   {
    for(int j =0;j< img->n; j++)
    {
-     fscanf(fp,"%d %d %d ",&img->A[i][j].R,&img->A[i][j].G,&img->A[i][j].B);
+     fscanf(fp,"%d %d %d ",&img->pxl[i][j].R,&img->pxl[i][j].G,&img->pxl[i][j].B);
    }
   }
   
@@ -88,7 +88,7 @@ void writePPM(ppm *img, char* name){
     //printing the pixel values
     for(int i = 0 ; i < img->m ; i++){
         for(int j = 0 ; j < img->n ; j++){
-           fprintf(fp,"%d %d %d ",img->A[i][j].R,img->A[i][j].G,img->A[i][j].B);
+           fprintf(fp,"%d %d %d ",img->pxl[i][j].R,img->pxl[i][j].G,img->pxl[i][j].B);
         }
         fprintf(fp,"\n");
     }
