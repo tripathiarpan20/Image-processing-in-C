@@ -93,6 +93,6 @@ void writePPM(ppm *img, char* name){
         }
         fprintf(fp,"\n");
     }
-    fclose(fp);
-
+    fclose(fp);   
+    printf("writePPM successful\n");
 }

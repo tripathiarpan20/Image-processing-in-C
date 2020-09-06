@@ -9,11 +9,11 @@ build: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
 	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/run_main.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c 
 
 T1: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T1.c $(TRANSDIR)/*.c $(SRCDIR)/matrix_math.c $(SRCDIR)/ppm_util.c -L $(LIBDIR) -lmatrixmath
+	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T1.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c
 
 
 T2: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T2.c $(TRANSDIR)/*.c $(SRCDIR)/matrix_math.c $(SRCDIR)/ppm_util.c -L $(LIBDIR) -lmatrixmath
+	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T2.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c
 
 $(LIBDIR)/libmatrixmath.a:
 	
@@ -23,12 +23,12 @@ $(LIBDIR)/libmatrixmath.a:
 #if 'prepare' is used before 'run', inp.txt has 4 lines, but the main.o
 #only reads two lines from the 'prepare', hence, both 'prepare' and 'run'
 #have proper functionality
-run: build 
+run: T1 
 	@echo "input" >> inp.txt
 	@echo "output" >> inp.txt
 	@cat inp.txt
 	$(EXEDIR)/main.o
-	rm inp.txt
+	@rm inp.txt 
 
 prepare: build
 	@read inp_file

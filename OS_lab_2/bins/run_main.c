@@ -46,6 +46,6 @@ void main() {
   printf("Transforms successful\n");
   //Fuction to write a 'ppm' or 'matrix' structure into 'outputs/output.ppm'
   writePPM(inp,output);
-  printf("Output ppm file by run_main is: %s\n",input);
+  printf("Output ppm file by run_main is: %s\n",output);
 
 }
