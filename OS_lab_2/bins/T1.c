@@ -30,12 +30,12 @@ void main() {
     else if(strcmpi(transforms[i],"blur")==0) {
       ppm* result = //blurring function by me
     }
-    input = result;
+    inp = result;
   }
   //The transform functions would have exceptions that occur for wrong inputs
   
   //Fuction to write a 'ppm' or 'matrix' structure into 'outputs/output.ppm'
-  writePPM(input,"output.ppm");
+  writePPM(inp,output);
 
 
 }
