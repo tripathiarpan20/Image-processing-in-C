@@ -10,9 +10,9 @@ ppm* blur (ppm* A){
     }
     for (int i=0; i < ret->m - 1; i++) {
       for(int j=0; j<ret->n - 1; j++) {
-        float avg_R=0;
-	float avg_G=0;
-	float avg_B=0;
+        float avg_R=0.0;
+	float avg_G=0.0;
+	float avg_B=0.0;
 	      
 	for (int k=0; k < 2; k++) {
           for (int l=0; l < 2; l++) {
