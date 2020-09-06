@@ -7,10 +7,10 @@ ppm* rgbtograyscale (ppm* A)
     
    ret->n = A->n;
      
-   ret->A = (pixel **)malloc(ret->m * sizeof(pixel *));
+   ret->pxl = (pixel **)malloc(ret->m * sizeof(pixel *));
    for(i=0;i<ret->m;i++)
    {
-    ret->A[i] = (pixel*)malloc(ret->n*sizeof(pixel));
+    ret->pxl[i] = (pixel*)malloc(ret->n*sizeof(pixel));
    }
      
    matrix P,Q,R;
@@ -59,9 +59,9 @@ ppm* rgbtograyscale (ppm* A)
       P->A[0][1]= A->A[i][j].G;
       P->A[0][2]= A->A[i][j].B;
       multiply(R,P,Q);
-      ret->A[i][j].R = R->A[0][0];
-      ret->A[i][j].G = R->A[0][1];
-      ret->A[i][j].B = R->A[0][2];
+      ret->pxl[i][j].R = R->A[0][0];
+      ret->pxl[i][j].G = R->A[0][1];
+      ret->pxl[i][j].B = R->A[0][2];
      }
     }
     return ret;
