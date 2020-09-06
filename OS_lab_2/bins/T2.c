@@ -23,7 +23,7 @@ void main() {
   //the files in transforms folder
   ppm* result;
   //looping through the transforms and applying on the image
-  for (int i=0; i<2; i++) {
+  for (int i=0; i<1; i++) {
     if(strcmpi(transforms[i],"grayscale") == 0) {
       ppm* result = //grayscale function by pavan
     }
