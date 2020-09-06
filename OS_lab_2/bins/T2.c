@@ -25,10 +25,10 @@ void main() {
   //looping through the transforms and applying on the image
   for (int i=0; i<1; i++) {
     if(strcmpi(transforms[i],"grayscale") == 0) {
-      ppm* result = //grayscale function by pavan
+      ppm* result = rgbtograyscale(inp);//grayscale function by pavan
     }
     else if(strcmpi(transforms[i],"blur")==0) {
-      ppm* result= //blurring function by me
+      ppm* result= blur(ppm); //blurring function by me
     }
     inp = result;
   }
