@@ -23,7 +23,7 @@ ppm* readPPM (char* name)
   strcat(fullname,name1);
   printf("Filename for readPPM fopen is: %s\n",fullname);
  
-  fp = fopen(fullname,"rb");
+  fp = fopen(fullname,"r");
   if(!fp){
 	       fprintf(stderr,"Unable to open inputted ppm file\n");
 	       exit(1);
@@ -78,7 +78,7 @@ void writePPM(ppm *img, char* name){
     strcat(fullname,filename);
     
      printf("Filename for writePPM fopen is: %s\n",fullname);
-    fp = fopen(fullname,"wb");
+    fp = fopen(fullname,"w");
     
     if(!fp){
         printf("Unable to open file\n",name);

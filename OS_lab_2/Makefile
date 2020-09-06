@@ -16,14 +16,15 @@ T2: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
 	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T2.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c
 
 $(LIBDIR)/libmatrixmath.a:
-	
+#$(LIBDIR)/libmatrixmath.o
+#gcc -o 
 
 
 #used to prepare the txt file, that acts as input to our executable
 #if 'prepare' is used before 'run', inp.txt has 4 lines, but the main.o
 #only reads two lines from the 'prepare', hence, both 'prepare' and 'run'
 #have proper functionality
-run: T1 
+run: build
 	@echo "input" >> inp.txt
 	@echo "output" >> inp.txt
 	@cat inp.txt
