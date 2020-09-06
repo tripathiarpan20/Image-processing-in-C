@@ -21,7 +21,7 @@ void main() {
 
   //TODO: implement a 'list transforms' command in make file that shows all
   //the files in transforms folder
-
+  ppm* result;
   //looping through the transforms and applying on the image
   for (int i=0; i<1; i++) {
     if(strcmpi(transforms[i],"grayscale") == 0) {
