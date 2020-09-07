@@ -58,11 +58,12 @@ test%: build
 	$(EXEDIR)/main.o 
 
 clean:
-	rm inp.txt
 	rm $(EXEDIR)/*
 	rmdir $(EXEDIR)
 	rm $(LIBDIR)/*
 	rmdir $(LIBDIR)
+	rm inp.txt
+	
 
 $(EXEDIR):
 	mkdir -p $(EXEDIR)
