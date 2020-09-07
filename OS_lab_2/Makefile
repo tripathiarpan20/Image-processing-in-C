@@ -5,8 +5,8 @@ EXEDIR := exe
 LIBDIR := libs
 
 
-build: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c $(SRCDIR)/matrixmath.c
+build: $(EXEDIR) libso
+	gcc -o $(EXEDIR)/main -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c -L $(LIBDIR)/libdyn -lmatrixmath
 
 T1.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
 	gcc -o $(EXEDIR)/T1 -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T1.c $(SRCDIR)/matrixmath.c 
@@ -30,23 +30,23 @@ T2: T2.o
 	@rm inp.txt
 
 
-
-liba: $(LIBDIR)/libmatrixmath.a $(LIBDIR)/matrixmath.o | $(LIBDIR)
+#STATIC
+liba: $(LIBDIR)/libstatic/libmatrixmath.a  | libstatic
 
 $(LIBDIR)/libstatic/libmatrixmath.a: $(LIBDIR)/libstatic/matrixmathstatic.o $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libstatic
 	ar rcs $@ $<
 $(LIBDIR)/libstatic/matrixmathstatic.o : $(SRCDIR)/matrixmath.c $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libstatic
-	gcc -c -I $(INCLDIR) $< -o libs/matrixmathstatic.o 
+	gcc -c -I $(INCLDIR) $< -o $@ 
 
 
+#DYNAMIC
+libso: $(LIBDIR)/libdyn/libmatrixmath.so | libdyn
 
-libso: $(LIBDIR)/libmatrixmath.so $(LIBDIR)/matrixmath.o | $(LIBDIR)
-
-$(LIBDIR)/libdyn/libmatrixmath.so: $(LIBDIR)/lib.so/matrixmath.o $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libdyn
-	mkdir -p $(LIBDIR)/libdyn
+$(LIBDIR)/libdyn/libmatrixmath.so: $(LIBDIR)/libdyn/matrixmath.o $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libdyn
 	gcc -shared -o $@ $<
-	
-$(LIBDIR)/libdyn/matrixmath.o: $(SRCDIR)/matrixmath.c $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h lib.so | libdyn
+
+export LD_LIBRARY_PATH=$(LIBDIR)/libdyn:$LD_LIBRARY_PATH
+$(LIBDIR)/libdyn/matrixmath.o: $(SRCDIR)/matrixmath.c $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h  | libdyn
 	gcc -fPIC -c -I $(INCLDIR) $< -o $@
 
 
@@ -54,11 +54,9 @@ $(LIBDIR)/libdyn/matrixmath.o: $(SRCDIR)/matrixmath.c $(INCLDIR)/main.h $(INCLDI
 
 libdyn: $(LIBDIR)
 	mkdir -p $(LIBDIR)/libdyn
-	
+
 libstatic: $(LIBDIR)
 	mkdir -p $(LIBDIR)/libstatic
-	
-	
 
 
 #used to prepare the txt file, that acts as input to our executable
@@ -90,7 +88,6 @@ clean:
 	rm $(LIBDIR)/*
 	rmdir $(LIBDIR)
 	rm inp.txt
-	
 
 $(EXEDIR):
 	mkdir -p $(EXEDIR)
