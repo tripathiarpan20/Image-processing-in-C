@@ -24,6 +24,9 @@ struct matrix_t {
 };
 typedef struct matrix_t * matrix;
 
+ppm* blur(ppm* A);
+ppm* rgbtograyscale(ppm* A);
+
 /*
 **A = (float **)malloc(m * sizeof(int *)); 
     for (i=0; i<m; i++) 

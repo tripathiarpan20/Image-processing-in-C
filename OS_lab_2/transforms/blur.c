@@ -1,4 +1,4 @@
-#include "main.h"
+#include "matrixmath.h"
 
 ppm* blur (ppm* A){
     ppm *ret = (ppm *) malloc(sizeof(ppm));

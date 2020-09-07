@@ -32,8 +32,9 @@ void main() {
   ppm* result = (ppm *) malloc(sizeof(ppm));
   
   printf("Beginning transformations\n");
+  result = blur(inp);
   //looping through the transforms and applying on the image
-  for (int i=0; i<1; i++) {
+  /*for (int i=0; i<1; i++) {
     if(strcmp(transforms[i],"grayscale") == 0) {
       ppm* result = rgbtograyscale(inp); //grayscale function by pavan
     }
@@ -41,11 +42,11 @@ void main() {
       ppm* result = blur(inp); //blurring function by me
     }
     inp = result;
-  }
+  }*/
   //The transform functions would have exceptions that occur for wrong inputs
   printf("Transforms successful\n");
   //Fuction to write a 'ppm' or 'matrix' structure into 'outputs/output.ppm'
-  writePPM(inp,output);
+  writePPM(result,output);
   printf("Output ppm file by run_main is: %s\n",output);
 
 }

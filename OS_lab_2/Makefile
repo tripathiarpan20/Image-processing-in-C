@@ -6,14 +6,28 @@ LIBDIR := libs
 
 
 build: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/run_main.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c 
+	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(SRCDIR)/matrixmath.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c  
 
-T1: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T1.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c
+T1.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
+	gcc -o $(EXEDIR)/T1.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(SRCDIR)/matrixmath.c $(TRANSDIR)/*.c $(SRCDIR)/T1.c
 
 
-T2: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/T2.c $(TRANSDIR)/*.c $(SRCDIR)/matrixmath.c $(SRCDIR)/ppm_util.c
+T2.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
+	gcc -o $(EXEDIR)/T2.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(SRCDIR)/matrixmath.c $(TRANSDIR)/*.c $(SRCDIR)/T2.c
+
+T1: T1.o
+	@echo "input" >> inp.txt
+	@echo "output" >> inp.txt
+	@cat inp.txt
+	$(EXEDIR)/T1.o
+	@rm inp.txt
+
+T2: T2.o
+	@echo "input" >> inp.txt
+	@echo "output" >> inp.txt
+	@cat inp.txt
+	$(EXEDIR)/T2.o
+	@rm inp.txt
 
 $(LIBDIR)/libmatrixmath.a:
 #$(LIBDIR)/libmatrixmath.o
@@ -35,7 +49,8 @@ prepare: build
 	@read inp_file
 	@read out_file
 	@echo $$inp_file >> inp.txt
-	@echo $$out_file >> inp.txt  
+	@echo $$out_file >> inp.txt
+	@cat inp.txt
 #https://stackoverflow.com/questions/3743793/makefile-why-is-the-read-command-not-reading-the-user-input
 
 
