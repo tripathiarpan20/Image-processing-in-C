@@ -6,14 +6,14 @@ LIBDIR := libs
 
 
 build: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(SRCDIR)/matrixmath.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c  
+	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c $(SRCDIR)/matrixmath.c
 
 T1.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/T1.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(SRCDIR)/matrixmath.c $(TRANSDIR)/*.c $(SRCDIR)/T1.c
+	gcc -o $(EXEDIR)/T1.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T1.c $(SRCDIR)/matrixmath.c 
 
 
 T2.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/T2.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(SRCDIR)/matrixmath.c $(TRANSDIR)/*.c $(SRCDIR)/T2.c
+	gcc -o $(EXEDIR)/T2.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T2.c $(SRCDIR)/matrixmath.c
 
 T1: T1.o
 	@echo "input" >> inp.txt
