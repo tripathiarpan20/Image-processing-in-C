@@ -81,7 +81,7 @@ void writePPM(ppm *img, char* name){
     fp = fopen(fullname,"w");
     
     if(!fp){
-        printf("Unable to open file\n",name);
+        printf("Unable to open file %s\n",name);
         exit(1);
     }
     fprintf(fp,"P3\n");
