@@ -6,27 +6,27 @@ LIBDIR := libs
 
 
 build: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/main.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c $(SRCDIR)/matrixmath.c
+	gcc -o $(EXEDIR)/main -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/run_main.c $(SRCDIR)/matrixmath.c
 
 T1.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/T1.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T1.c $(SRCDIR)/matrixmath.c 
+	gcc -o $(EXEDIR)/T1 -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T1.c $(SRCDIR)/matrixmath.c 
 
 
 T2.o: $(EXEDIR) $(LIBDIR)/libmatrixmath.a
-	gcc -o $(EXEDIR)/T2.o -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T2.c $(SRCDIR)/matrixmath.c
+	gcc -o $(EXEDIR)/T2 -I $(INCLDIR) $(SRCDIR)/ppm_util.c $(TRANSDIR)/*.c $(SRCDIR)/T2.c $(SRCDIR)/matrixmath.c
 
 T1: T1.o
 	@echo "input" >> inp.txt
 	@echo "output" >> inp.txt
 	@cat inp.txt
-	$(EXEDIR)/T1.o
+	$(EXEDIR)/T1
 	@rm inp.txt
 
 T2: T2.o
 	@echo "input" >> inp.txt
 	@echo "output" >> inp.txt
 	@cat inp.txt
-	$(EXEDIR)/T2.o
+	$(EXEDIR)/T2
 	@rm inp.txt
 
 $(LIBDIR)/libmatrixmath.a:
@@ -42,7 +42,7 @@ run: build
 	@echo "input" >> inp.txt
 	@echo "output" >> inp.txt
 	@cat inp.txt
-	$(EXEDIR)/main.o
+	$(EXEDIR)/main
 	@rm inp.txt 
 
 prepare: build
@@ -55,7 +55,7 @@ prepare: build
 test%: build
 	@echo $@ > inp.txt
 	@echo $@_ >> inp.txt
-	$(EXEDIR)/main.o 
+	$(EXEDIR)/main 
 
 clean:
 	rm $(EXEDIR)/*
