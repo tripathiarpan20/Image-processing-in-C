@@ -29,9 +29,36 @@ T2: T2.o
 	$(EXEDIR)/T2
 	@rm inp.txt
 
-$(LIBDIR)/libmatrixmath.a:
-#$(LIBDIR)/libmatrixmath.o
-#gcc -o 
+
+
+liba: $(LIBDIR)/libmatrixmath.a $(LIBDIR)/matrixmath.o | $(LIBDIR)
+
+$(LIBDIR)/libstatic/libmatrixmath.a: $(LIBDIR)/libstatic/matrixmathstatic.o $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libstatic
+	ar rcs $@ $<
+$(LIBDIR)/libstatic/matrixmathstatic.o : $(SRCDIR)/matrixmath.c $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libstatic
+	gcc -c -I $(INCLDIR) $< -o libs/matrixmathstatic.o 
+
+
+
+libso: $(LIBDIR)/libmatrixmath.so $(LIBDIR)/matrixmath.o | $(LIBDIR)
+
+$(LIBDIR)/libdyn/libmatrixmath.so: $(LIBDIR)/lib.so/matrixmath.o $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h | libdyn
+	mkdir -p $(LIBDIR)/libdyn
+	gcc -shared -o $@ $<
+	
+$(LIBDIR)/libdyn/matrixmath.o: $(SRCDIR)/matrixmath.c $(INCLDIR)/main.h $(INCLDIR)/matrixmath.h lib.so | libdyn
+	gcc -fPIC -c -I $(INCLDIR) $< -o $@
+
+
+
+
+libdyn: $(LIBDIR)
+	mkdir -p $(LIBDIR)/libdyn
+	
+libstatic: $(LIBDIR)
+	mkdir -p $(LIBDIR)/libstatic
+	
+	
 
 
 #used to prepare the txt file, that acts as input to our executable
