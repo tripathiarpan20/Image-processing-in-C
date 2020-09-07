@@ -46,10 +46,8 @@ run: build
 	@rm inp.txt 
 
 prepare: build
-	@read inp_file
-	@read out_file
-	@echo $$inp_file >> inp.txt
-	@echo $$out_file >> inp.txt
+	@chmod +x build.sh
+	./build.sh
 	@cat inp.txt
 #https://stackoverflow.com/questions/3743793/makefile-why-is-the-read-command-not-reading-the-user-input
 
