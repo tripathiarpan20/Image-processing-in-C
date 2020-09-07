@@ -14,13 +14,9 @@ ppm* blur (ppm* A){
 	float avg_G=0.0;
 	float avg_B=0.0;
 	      
-	for (int k=0; k < 2; k++) {
-          for (int l=0; l < 2; l++) {
-            avg_R += ret->pxl[i+k][j+l].R;
-	    avg_G += ret->pxl[i+k][j+l].G;
-	    avg_B += ret->pxl[i+k][j+l].B;
-	  }
-	}
+	avg_R = A->pxl[i][j].R + A->pxl[i][j+1].R + A->pxl[i+1][j].R + A->pxl[i+1][j+1].R;
+	avg_G = A->pxl[i][j].G + A->pxl[i][j+1].G + A->pxl[i+1][j].G + A->pxl[i+1][j+1].G;
+	avg_B = A->pxl[i][j].B + A->pxl[i][j+1].B + A->pxl[i+1][j].B + A->pxl[i+1][j+1].B;
 	avg_R = avg_R / 4.0;
 	avg_G = avg_G / 4.0;
 	avg_B = avg_B / 4.0;
@@ -28,13 +24,7 @@ ppm* blur (ppm* A){
 	ret->pxl[i][j].R = avg_R;
 	ret->pxl[i][j].G = avg_G;
 	ret->pxl[i][j].B = avg_B;
-        /*for (int k=0; k < 2; k++) {
-          for (int l=0; l < 2; l++) {
-            ret->pxl[i+k][j+l].R = avg_R;
-	    ret->pxl[i+k][j+l].G = avg_G;
-	    ret->pxl[i+k][j+l].B = avg_B;
-	  }
-	}*/
+        
       }
     }   
 
