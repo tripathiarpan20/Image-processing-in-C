@@ -21,9 +21,9 @@ ppm* blur (ppm* A){
 	avg_G = avg_G / 4.0;
 	avg_B = avg_B / 4.0;
 	
-	ret->pxl[i][j].R = avg_R;
-	ret->pxl[i][j].G = avg_G;
-	ret->pxl[i][j].B = avg_B;
+	ret->pxl[i][j].R = (int) avg_R;
+	ret->pxl[i][j].G = (int) avg_G;
+	ret->pxl[i][j].B = (int) avg_B;
         
       }
     }   
