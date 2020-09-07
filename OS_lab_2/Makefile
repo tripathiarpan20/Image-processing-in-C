@@ -39,7 +39,7 @@ prepare: build
 #https://stackoverflow.com/questions/3743793/makefile-why-is-the-read-command-not-reading-the-user-input
 
 
-test%: test%.ppm test%_.ppm
+test%: build
 	@echo $@ > inp.txt
 	@echo $@_ >> inp.txt
 	$(EXEDIR)/main.o 
