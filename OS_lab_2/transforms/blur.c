@@ -8,8 +8,8 @@ ppm* blur (ppm* A){
     for (int i=0; i< ret->m; i++) {
       ret->pxl[i] = (pixel *)malloc(ret->n * sizeof(pixel));
     }
-    for (int i=0; i < ret->m - 1; i++) {
-      for(int j=0; j<ret->n - 1; j++) {
+    for (int i=0; i < ret->m; i++) {
+      for(int j=0; j<ret->n; j++) {
         float avg_R=0.0;
 	float avg_G=0.0;
 	float avg_B=0.0;
