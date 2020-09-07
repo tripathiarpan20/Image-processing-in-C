@@ -83,11 +83,9 @@ test%: build
 	$(EXEDIR)/main 
 
 clean:
-	rm $(EXEDIR)/*
-	rmdir $(EXEDIR)
-	rm $(LIBDIR)/*
-	rmdir $(LIBDIR)
-	rm inp.txt
+	rm -r $(EXEDIR)
+	rm -r $(LIBDIR)
+	rm -f inp.txt
 
 $(EXEDIR):
 	mkdir -p $(EXEDIR)
